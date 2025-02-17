@@ -19,15 +19,13 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: npm install
-        working-directory: client # Change this if your React app is in a different folder
+        run: npm install  # Removed 'working-directory: client' if not needed
 
       - name: Build Project
         run: npm run build
-        working-directory: client
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: client/build
+          publish_dir: build
