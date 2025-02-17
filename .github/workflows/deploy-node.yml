@@ -1,0 +1,27 @@
+name: Deploy Node.js Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: backend # Change this if your backend is in a different folder
+
+      - name: Start Server
+        run: node server.js
+        working-directory: backend
